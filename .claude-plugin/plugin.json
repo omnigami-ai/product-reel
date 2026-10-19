@@ -1,0 +1,18 @@
+{
+  "name": "product-reel",
+  "description": "Make a readable product or catalogue reel with photographed items on the beat, real shop or app screens, count-ups, an orbiting collection and a held brand/address. Use for “show everything we make”, collection showcases and short social reels of a range. Includes tall, square and wide layouts.",
+  "author": {
+    "name": "omnigami",
+    "url": "https://omnigami.ai"
+  },
+  "homepage": "https://omnigami.ai/skills/product-reel",
+  "repository": "https://github.com/omnigami-ai/product-reel",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "keywords": [
+    "video",
+    "launch video",
+    "product video",
+    "motion graphics",
+    "omnigami"
+  ]
+}
