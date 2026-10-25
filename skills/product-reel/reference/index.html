@@ -12,7 +12,7 @@
 </footer>
 <script src="kit.js"></script>
 <script>
-// The product reel's reference: a 22 s reel of everything Fernwise keeps (a fictional plant-care
+// The product reel's reference: a 25 s reel of everything Fernwise keeps (a fictional plant-care
 // app, omnigami's cast). One choreography and timeline in every shape; tall first, laid out again
 // for square and wide. 120 BPM: a logo open, a
 // plant every beat (its name and care line beside it, its common name huge and pale behind it, a
@@ -32,7 +32,7 @@
 //           kit.motion.markReveal, so any logo works.
 (() => {
   const { clamp, lerp, loadFont, loadImage, roundRect, motion: m } = window.kit;
-  const FPS = 60, F = 1 / 12, BPM = 120, BEAT = 60 / BPM, BAR = 4 * BEAT, DURATION = 21.9; // P.close + 3.0: room for the score's last hit to ring out
+  const FPS = 60, F = 1 / 12, BPM = 120, BEAT = 60 / BPM, BAR = 4 * BEAT, DURATION = 25; // P.close + 3.0: room for the score's last hit to ring out
   const at = (bar, beat = 0) => bar * BAR + beat * BEAT; // a time on the beat grid
   // each shape's frame. A phone app shows its phone screens in every shape: whole in tall, a
   // close-up card in square and wide (never a desktop page squeezed into a phone frame)
@@ -404,15 +404,19 @@
   // ---- the end (13.5–15 s): the mark draws itself, the name comes out of it, the address ----
   // Revision 7 portrait: living holds, region-only filtering, zero irises.
   // Square/wide keep their previous timing until they're reviewed.
-  const P = { items: 2.4, step: 1.25, pull: 2.4 + N * 1.25,
+  // Pauses only where the viewer needs them (the founder, 2026-10-21; style.md, "Pauses"): the name and its line
+  // hold 2.8 s in the open (nine words), the three numbers and their labels half a second more, and the search
+  // screen, which arrives on a push, holds a second for its title and field before the cursor sets off, rests
+  // 0.45 s and presses. The items keep their slot each, the reel's pace; the search's typing and results keep theirs.
+  const P = { items: 4.0, step: 1.25, get pull() { return this.items + N * this.step; },
     get shelf() { return this.pull + .65; }, get counts() { return this.shelf + 1; },
-    get orbit() { return this.counts + 1.7; }, get converge() { return this.orbit + 1.9; },
-    get proof() { return this.converge + .4; }, get close() { return this.proof + 2.10; },
+    get orbit() { return this.counts + 2.2; }, get converge() { return this.orbit + 1.9; },
+    get proof() { return this.converge + .4; }, get close() { return this.proof + 3.10; },
     get end() { return this.close + .3; } };
   const SAFE = { side: .07, top: .10, bottom: .10 };
-  const portraitDuration = P.close + 3.0; // = DURATION
+  const portraitDuration = P.close + 3.0; // = DURATION (25)
   const END_PUSH = .40; // the search card's exit; the closing mark grows under it
-  const SEARCH_KEYS = [P.proof + .40, P.proof + .60, P.proof + .80];
+  const SEARCH_KEYS = [P.proof + 1.40, P.proof + 1.60, P.proof + 1.80]; // the screen lands at proof + .3 and holds a second first
   function motionMark(c, {size, fg}) {
     c.save();c.scale(size*.86/256,size*.86/256);c.translate(-115,-127.5);c.fillStyle=fg;c.fill(KEEPER,"evenodd");c.restore();
   }
@@ -610,7 +614,7 @@
     searchState(t,f);
     const field=SEARCH_REGIONS.field,target={x:f.left+(field[0]+110)*f.k,y:f.top+(field[1]+field[3]/2)*f.k};
     m.drawCursor(g,{t,path:[
-      {at:P.proof+.02,from:{x:W+8*U,y:H*.40},to:target,dur:.28,curve:.18},
+      {at:SEARCH_KEYS[0]-.3-.28,from:{x:W+8*U,y:H*.40},to:target,dur:.28,curve:.18}, // in (on the target by about .45 s before the press: its ease-out lands early), then the press
       {at:SEARCH_KEYS[0]+.10,exit:true,dur:.22},
     ],press:[SEARCH_KEYS[0]],theme:{accent:MOSS,seed:17}});
   }
@@ -685,12 +689,12 @@
     bpm: BPM, duration: DURATION, root: 50, // D3, upward-voiced major chords, 120 BPM
     chords: [[0, 4, 7], [7, 11, 14], [9, 12, 16], [5, 9, 12]],
     sections: [
-      { from: 0, to: 1, pad: 0.75, hats: 0.25 },
-      { from: 1, to: 3, kick: 0.8, hats: 0.55, bass: 0.7, pad: 0.5 },
-      { from: 3, to: 4, kick: 0.75, hats: 0.5, clap: 0.35, bass: 0.7, pad: 0.55 },
-      { from: 4, to: 8, kick: 0.65, hats: 0.4, clap: 0.3, bass: 0.65, pad: 0.55 },
-      { from: 8, to: 9, kick: 0.5, hats: 0.3, bass: 0.6, pad: 0.6 },
-      { from: 9, to: 11, pad: 0.7, hats: 0.15 },
+      { from: 0, to: 2, pad: 0.75, hats: 0.25 },
+      { from: 2, to: 4, kick: 0.8, hats: 0.55, bass: 0.7, pad: 0.5 },
+      { from: 4, to: 5, kick: 0.75, hats: 0.5, clap: 0.35, bass: 0.7, pad: 0.55 },
+      { from: 5, to: 9, kick: 0.65, hats: 0.4, clap: 0.3, bass: 0.65, pad: 0.55 },
+      { from: 9, to: 10, kick: 0.5, hats: 0.3, bass: 0.6, pad: 0.6 },
+      { from: 10, to: 12.5, pad: 0.7, hats: 0.15 },
     ],
     breaks: [[P.items-.25, P.items], [P.pull - .25, P.pull], [P.orbit - .25, P.orbit], [P.close, P.end]],
   };

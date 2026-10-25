@@ -36,8 +36,9 @@ the picture, once for the sound), and `STORY.md`'s claims.
 7. **Polish:** it looks like a top studio's work: nothing clip-art,
    cartoonish, template-like or cheap; type set with care (sizes, spacing,
    line breaks); the brand's own colours, fonts and mark.
-8. **Sound:** a sound on every move; the bed's breaks before the first item,
-   the pull, the dive and the end; loudness around −14 LUFS.
+8. **Sound:** a sound on every move; the song lands one hit near the end and
+   closes (with `--music`, the bed's breaks before the first item, the pull,
+   the dive and the end); loudness around −14 LUFS.
 
 ## Hunt for
 

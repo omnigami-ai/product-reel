@@ -1,7 +1,7 @@
 # Product reel: style
 
-A readable reel of everything a company makes (current portrait cuts: 20 s
-Fennick, 21.25 s Fernwise): one item per readable slot, each with
+A readable reel of everything a company makes (current cuts: 20 s
+Fennick, 25 s Fernwise): one item per readable slot, each with
 its name, a detail line and its kind standing huge and pale behind it; the
 last item pulls back into the real catalogue screen; the catalogue's numbers
 count up; every item orbits one line; a real search types into real results;
@@ -55,10 +55,29 @@ height, floating over a soft ellipse shadow.
 - **The headline sits in the ring's hole,** never over tiles.
 - **Each shape is laid out for its frame,** not cropped.
 
+## Pauses
+
+Room goes only where the viewer needs it (the founder, 2026-10-21, on Unfold and Chat launch): words they
+must read hold long enough to read at a normal pace (about a quarter second a word once complete, a second
+at least), and where a big move (a push onto a new screen) lands just before a press, the new screen holds
+so the eye finds the control, and the cursor rests about 0.45 s before it presses. The items keep one
+1.25 s slot each, the reel's pace (each detail line has a second fully landed; the reel is a run through
+the range, not a page to read); the pull-back, the orbit, the search's typing and results keep theirs. A
+hold is simply still, or carries on its scene's own small drift; never a push that stops and starts. The
+Fernwise reference went from 21.9 to 25 s (2026-10-22):
+
+- **The open:** the name and its line ("Plant care for people who forget to water.", nine words in all) read
+  for 2.8 s before the push (they had 1.2 s, and left while still being read). The items now start on a bar
+  line (4 s).
+- **The numbers:** three counts and their labels (eight words) hold 2 s (they had 1.5 s).
+- **The search:** it arrives on a push; the cursor used to come in with the push and press 0.1 s after it
+  landed. Now the screen holds a second (its title and field), the cursor comes in, rests 0.45 s and
+  presses (20.3 s).
+
 ## Format
 
-- 120 BPM bed: a beat .5 s, a bar 2 s. Portrait duration follows the
-  reading holds (20 / 21.25 s); earlier square/wide timing was 15 s.
+- 120 BPM: a beat .5 s, a bar 2 s. Duration follows the reading holds
+  (Fennick 20 s; Fernwise 25 s in every shape); earlier square/wide timing was 15 s.
 - 60 fps, rendered with motion blur (`--blur 4`): the pushes need it.
 - Tall first (1080 × 1920), square (1440 × 1440), wide (1920 × 1080).
 - Captions only, no voice. Everything reads with the sound off.
@@ -92,15 +111,15 @@ older choreography below and have not been rendered or reviewed in this round.
 
 | Moment | Fennick | Fernwise | Motion / reading hold |
 | --- | --- | --- | --- |
-| Open | 0–2 | 0–2 | Fennick rev 4b: wordmark wipe .02–.30, seed drop .30–.50, line .50–.80, 1.0 s reading hold. Fernwise: generic `markReveal`, line settled .72, readable until 1.80. |
-| Open push | 1.80–2.10 | 1.80–2.10 | Whole-scene horizontal slide, `inOut`; first item rises and fades from 2.00. |
-| Items | 2–9.50 | 2–10.75 | Six / seven slots of 1.25 s. Each last detail line lands .2204 s into its slot: 1.0296 s fully readable. Overlapping `out` lifts retain each photo's own proportions. |
-| Pull / catalogue | 9.50–11.15 | 10.75–12.40 | .65 s whole-container `inOut` pull; sharp catalogue holds another 1.0 s. |
-| Counts | 11.15–12.65 | 12.40–13.90 | .12 s stagger; last label settled .49 s after start, held 1.01 s before the outgoing push begins. |
-| Push / orbit | 12.65–14.60 | 13.90–15.85 | Vertical push .30 s, tile fly-in .40 s; headline rises/fades as a block over .30 s, then reads for 1.30 s. |
-| Shape-preserving convergence | 14.75–15.15 | 16.00–16.40 | `out` travel toward centre; original tiles scale only to 68%, keep their corner ratio and keep every photo. They stack, then slide out. No circle/dot reduction. |
-| Real proof | 15.15–17.60 | 16.40–18.85 | Horizontal push .30 s. Fennick's real captured selection hits at 15.58 / 16.00 / 16.42, with cursor and button press on the same frames; final 3/12 state holds >1 s. Fernwise types the real “mon” captures at 16.80 / 16.92 / 17.04. |
-| End push / lockup | 17.60–20.00 | 18.85–21.25 | Vertical push .30 s; Fennick's wordmark wipe 17.72–18.10, seed 18.10–18.42, line 18.42–18.80; Fernwise uses generic `markReveal`. Address settled at 18.80 / 20.05, held 1.20 s to the final frame. |
+| Open | 0–2 | 0–4 | Fennick rev 4b: wordmark wipe .02–.30, seed drop .30–.50, line .50–.80, 1.0 s reading hold. Fernwise (2026-10-22): generic `markReveal`, line settled about 1.0, readable until 3.80 (the name and nine words). |
+| Open push | 1.80–2.10 | 3.80–4.10 | Whole-scene horizontal slide, `inOut`; first item rises and fades from 4.00 (Fernwise). |
+| Items | 2–9.50 | 4–12.75 | Six / seven slots of 1.25 s. Each last detail line lands .2204 s into its slot: 1.0296 s fully readable. Overlapping `out` lifts retain each photo's own proportions. |
+| Pull / catalogue | 9.50–11.15 | 12.75–14.40 | .65 s whole-container `inOut` pull; sharp catalogue holds another 1.0 s. |
+| Counts | 11.15–12.65 | 14.40–16.40 | .12 s stagger; last label settled .49 s after start, held 1.51 s (Fernwise) before the outgoing push begins. |
+| Push / orbit | 12.65–14.60 | 16.40–18.50 | Vertical push .30 s, tile fly-in .40 s; headline rises/fades as a block over .30 s, then reads for 1.30 s. |
+| Shape-preserving convergence | 14.75–15.15 | 18.50–18.90 | `out` travel toward centre; original tiles scale only to 68%, keep their corner ratio and keep every photo. They stack, then slide out. No circle/dot reduction. |
+| Real proof | 15.15–17.60 | 18.90–22.00 | Horizontal push .30 s. Fennick's real captured selection hits at 15.58 / 16.00 / 16.42, with cursor and button press on the same frames; final 3/12 state holds >1 s. Fernwise: the search screen holds a second; the cursor comes in (19.72), is on the field about 0.45 s before it presses; the real “m”, “mo”, “mon” captures land at 20.30 / 20.50 / 20.70 and the results hold to 22.00. |
+| End push / lockup | 17.60–20.00 | 22.00–25.00 | Vertical push .30 s; Fennick's wordmark wipe 17.72–18.10, seed 18.10–18.42, line 18.42–18.80; Fernwise uses generic `markReveal`. Address settled at 18.80 / 23.05, held to the final frame. |
 
 ### rev 4b: wordmark-only logos
 
@@ -220,14 +239,17 @@ fine). No gradients, no glows.
 
 ## Sound
 
-The 120 BPM bed with breaks before the first item, the pull, the dive and
-the end. Effects from the kit: `pop` on the dot, `sparkle` as the mark
+The skill's song (`music/song.mp3`, energetic, bright synth-pop at 120 BPM),
+fitted to the film: it starts on a bar line and, near the end, lands one hit
+while the rest closes and fades. With `--music`, the synthesised 120 BPM bed
+instead, with breaks before the first item, the pull, the dive and the end.
+Effects from the kit: `pop` on the dot, `sparkle` as the mark
 grows, `whoosh` + `hit` on the iris and on the dive's cut, `swish` + `tap`
 on every item, `whoosh` on the pull, `chime` as the screen lands, five
 `tick`s and a `pop` per count, a `tick` per word of the line, a `tick` per
 typed letter, `chime` on the address.
 
-The score's sound is `music.style`: here `'organic'` (plucked strings, a marimba, a shaker), as the reference's plants or botanicals brand has it. For the user's product, pick by what it is: `'organic'` for plants, food and drink, and other natural or handmade things; `'synth'` (oscillators, the default) for software and tools; `'felt'` (a sparse felt piano over a sub bass and a light kit) for a quiet, minimal film. In a break (`music.breaks`) the drums, bass and lead stop and the chords play on; the film's name seeds the key (always major), the progressions and the patterns.
+The synthesised score's sound (`--music`) is `music.style`: here `'organic'` (plucked strings, a marimba, a shaker), as the reference's plants or botanicals brand has it. For the user's product, pick by what it is: `'organic'` for plants, food and drink, and other natural or handmade things; `'synth'` (oscillators, the default) for software and tools; `'felt'` (a sparse felt piano over a sub bass and a light kit) for a quiet, minimal film. In a break (`music.breaks`) the drums, bass and lead stop and the chords play on; the film's name seeds the key (always major), the progressions and the patterns.
 
 ## Banned
 

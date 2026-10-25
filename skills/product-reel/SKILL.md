@@ -5,7 +5,7 @@ description: Make a readable product or catalogue reel with photographed items o
 
 # Product reel
 
-Make a short reel of a whole range (allow about 20–22 seconds for six or
+Make a short reel of a whole range (allow about 20–25 seconds for six or
 seven items): a logo open; one item per readable slot, each
 with its name, a detail line and its kind huge and pale behind it, a
 segmented progress bar counting through them; the last item pulls back into
@@ -42,7 +42,7 @@ Set up a first film:
 
 ```bash
 mkdir product-reel && cd product-reel
-cp -R "$SKILL_DIR/reference" reference && cp -R "$SKILL_DIR/reference" film && cp -R "$SKILL_DIR/scripts" scripts
+cp -R "$SKILL_DIR/reference" reference && cp -R "$SKILL_DIR/reference" film && cp -R "$SKILL_DIR/scripts" scripts && cp -R "$SKILL_DIR/music" music
 rm -rf film/assets/screens film/assets/plants film/plans
 npm init -y >/dev/null && npm i -D puppeteer-core
 ```
@@ -146,10 +146,15 @@ Edit `film/index.html`. Its sections are labelled KEEP, ADAPT and REPLACE.
   show two complete catalogue cards and the real builder without stretching
   UI. Check essential captured text against the 28 px floor at a 1440 px
   short side. Move/scale the complete container, never UI inside a fixed frame.
-- **KEEP** the sections and their order over the 120 BPM bed, the type
+- **KEEP** the sections and their order on the 120 BPM bars, the type
   fitting, item change, pull-back, counts, orbit and drawing. Current
   portrait times live in `P`; extend them for the number of items and words.
   Each line needs at least 1 s after landing and .4 s per three words.
+- **KEEP the pauses** (style.md, "Pauses"): the open's name and line read
+  before the push (about a quarter second a word); the numbers hold to be
+  read; a screen that arrives on a push holds about a second before the
+  cursor comes in, and the cursor rests about 0.45 s before it presses. The
+  items keep their slot each; never pad a beat.
   Use one 7% side margin and a 10% top/bottom safe frame. Nothing pops in.
   Use zero irises where possible, never more than one, and preserve every
   converging item's own shape and artwork. Use the generic `markReveal` for
@@ -178,11 +183,18 @@ mark (with licences), the items and where their photos came from, the date.
    `node scripts/render.mjs film --all --check --stress`. It must pass.
 4. Render:
    ```bash
-   node scripts/render.mjs film --all --video --blur 4 --music --sound --poster 2.2
+   node scripts/render.mjs film --all --video --blur 4 --audio music/song.mp3 --sound --poster 2.2
    ```
    This writes `out/9x16.mp4`, `out/1x1.mp4` and `out/16x9.mp4`: 60 fps, with
-   motion blur, music and effects, around −14 LUFS. It takes several minutes:
+   motion blur, the skill's song and effects, around −14 LUFS. It takes several minutes:
    run it in the foreground and wait for all three files before handing over.
+   The song, `music/song.mp3` (energetic, bright synth-pop, 120 BPM, made for
+   this skill), is fitted to the film: it starts on a bar line and, near the
+   end, lands one hit while the rest closes and fades (its stems in
+   `music/song-stems/` let the drums stop on that hit). It's about two minutes
+   long in distinct 8-bar sections; `--from <seconds>` starts at another one.
+   `--music` instead of `--audio music/song.mp3` gives the synthesised score;
+   the user's own song works the same way with `--audio their-song.wav`.
 5. Run `node scripts/preview.mjs film` and give its localhost address. It plays
    every shape and edits the words; saved edits need a new render.
 6. Write `README.md` (the files, how to preview, how to change a word, how to
@@ -222,6 +234,7 @@ For a published example or skill page, include the linked style credit below and
 - `scripts/`: `screens.mjs` (real screens in states), `capture.mjs` (brand
   from a URL), `render.mjs` (stills, strips, checks, MP4s), `preview.mjs`,
   `music.mjs`, `song.mjs` (fits a supplied song), `sfx.mjs` with the sound kit, and `chrome.mjs`.
+- `music/`: the skill's song and its stems.
 
 Style inspired by @justinmfarrugia's video
 (https://x.com/justinmfarrugia/status/2103822390870569266). This is an

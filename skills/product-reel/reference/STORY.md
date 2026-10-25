@@ -1,7 +1,7 @@
 # Fernwise: the reel
 
-20.45 s in the current portrait cut (1080 × 1920), with a 120 BPM bed.
-Square (1440 × 1440) and wide (1920 × 1080) are earlier revisions. Fernwise is a fictional
+25 s in every shape (tall 1080 × 1920, square 1440 × 1440, wide 1920 × 1080; one timeline), with a
+120 BPM bed; re-timed 2026-10-22 with pauses where the viewer needs them (style.md, "Pauses"). Fernwise is a fictional
 plant-care iPhone app made for omnigami's examples (`cast/fernwise/`). Real
 material only: the eleven studio cut-outs from `cast/fernwise/renders/cutout/`
 (`assets/plants/`), screens captured from the working app with
@@ -16,13 +16,13 @@ next one, and the name.
 
 | Time | Section | What happens |
 | --- | --- | --- |
-| 0–1.85 | Open | Keeper and the name are already forming on frame 0; tagline lands by .34. Horizontal push begins at 1.55. |
-| 1.75–10.50 | Plants | Seven 1.25 s slots. Photos breathe, the progress segment fills and each detail line has ≥1.02 s fully landed. |
-| 10.50–12.15 | Pull / Shelf | Spike pulls into the real Shelf in .65 s. The whole card drifts 6.48 px through its 1 s reading hold. |
-| 12.15–13.95 | Numbers | Real Shelf washes pale. Three numbers enter with a .12 s stagger; the panel drifts during the read. Next push begins at 13.65. |
-| 13.65–16.45 | Orbit | Overlapping vertical push, eleven real photo tiles around the headline, then convergence at 15.75. Search push starts at 16.15. |
-| 16.15–18.85 | Search | The actual “m”, “mo”, “mon” captures update only their field, match label and result rows at 16.55, 16.75 and 16.95. Removed rows lift and fade within their own boxes. Final result holds ≥1.08 s with 7.56 px whole-card drift. Closing push begins at 18.25. |
-| 18.25–20.45 | End | The mark grows off-frame during the overlapping push; name slides and fades inside the safe area. Address settles at 19.25, holding through the 1.2 s final push. |
+| 0–4.1 | Open | Keeper and the name are already forming on frame 0; the line is in by about 1.0 and reads to 3.8 (the name and nine words). Horizontal push 3.8–4.1. |
+| 4.0–12.75 | Plants | Seven 1.25 s slots from the bar line at 4 s. Photos breathe, the progress segment fills and each detail line has ≥1.02 s fully landed. |
+| 12.75–14.4 | Pull / Shelf | Spike pulls into the real Shelf in .65 s. The whole card drifts 6.48 px through its 1 s reading hold. |
+| 14.4–16.7 | Numbers | Real Shelf washes pale. Three numbers enter with a .12 s stagger; they and their labels read for 2 s; the next push begins at 16.4. |
+| 16.4–19.2 | Orbit | Overlapping vertical push, eleven real photo tiles around the headline, then convergence at 18.5. Search push starts at 18.9. |
+| 18.9–22.0 | Search | The search screen lands (19.2) and holds; the cursor comes in at 19.72 and is on the field about 0.45 s before it presses. The actual “m”, “mo”, “mon” captures update only their field, match label and result rows at 20.3, 20.5 and 20.7. Removed rows lift and fade within their own boxes. Final result holds ≥1.05 s with a small whole-card drift. Closing push begins at 22.0. |
+| 22.0–25.0 | End | The mark grows during the overlapping push; name slides and fades inside the safe area. Address settles at about 23.05 and holds to the end. |
 
 ## The plants, in order
 
@@ -32,13 +32,13 @@ plant's own page; status words from the Shelf screen (Dot's Needs light pill is 
 
 | Beat | Photo | Name | Behind it (common name) | Botanical | Care line | Pill |
 |---|---|---|---|---|---|---|
-| 1.75 | `monty` | Monty | Swiss cheese plant | Monstera deliciosa | Water every 7 days · Bright, indirect | Due today |
-| 3.00 | `pickles` | Pickles | Pancake plant | Pilea peperomioides | Water every 6 days · Bright, indirect | Due today |
-| 4.25 | `fernando` | Fernando | Boston fern | Nephrolepis exaltata | Water every 3 days · Medium light | Due today |
-| 5.50 | `olive` | Olive | Olive tree | Olea europaea | Water every 10 days · Full sun | In 6 days |
-| 6.75 | `dot` | Dot | Polka dot plant | Hypoestes phyllostachya | Water every 4 days · Bright, indirect | Needs light |
-| 8.00 | `basil` | Basil | Sweet basil | Ocimum basilicum | Water every 2 days · Sunny sill | Tomorrow |
-| 9.25 | `spike` | Spike | Snake plant | Dracaena trifasciata | Water every 14 days · Any light | In 5 days |
+| 4.00 | `monty` | Monty | Swiss cheese plant | Monstera deliciosa | Water every 7 days · Bright, indirect | Due today |
+| 5.25 | `pickles` | Pickles | Pancake plant | Pilea peperomioides | Water every 6 days · Bright, indirect | Due today |
+| 6.50 | `fernando` | Fernando | Boston fern | Nephrolepis exaltata | Water every 3 days · Medium light | Due today |
+| 7.75 | `olive` | Olive | Olive tree | Olea europaea | Water every 10 days · Full sun | In 6 days |
+| 9.00 | `dot` | Dot | Polka dot plant | Hypoestes phyllostachya | Water every 4 days · Bright, indirect | Needs light |
+| 10.25 | `basil` | Basil | Sweet basil | Ocimum basilicum | Water every 2 days · Sunny sill | Tomorrow |
+| 11.50 | `spike` | Spike | Snake plant | Dracaena trifasciata | Water every 14 days · Any light | In 5 days |
 
 Spike goes last because it sits in the middle of the Shelf grid (row 2,
 column 2), so the pull-back lands in the centre of the screen.
