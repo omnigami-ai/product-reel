@@ -41,8 +41,8 @@
   const tall = () => shape === '9:16', wide = () => shape === '16:9';
 
   const canvas = document.getElementById('c');
-  let g = canvas.getContext('2d', { willReadFrequently: true });
-  const metrics = document.createElement('canvas').getContext('2d', { willReadFrequently: true });
+  let g = kit.textContext(canvas.getContext('2d', { willReadFrequently: true }));
+  const metrics = kit.textContext(document.createElement('canvas').getContext('2d', { willReadFrequently: true }));
 
 
   // ---------- ADAPT: the brand's colours and fonts (cast/fernwise/brand.md) ----------
@@ -145,10 +145,11 @@
   // the largest size from max down to min at which the words wrap into maxLines lines of maxW;
   // balanced: the measure narrowed as far as it goes without adding a line
   const fitCache = new Map();
-  function fit(text, font, { maxW, max, min, lines: maxLines = 1, tracking = 0, balance = true, maxH = Infinity, lead = 1.2 }) {
+  function fit(text, font, { maxW, max, min, lines: maxLines = 1, tracking = 0, balance = true, maxH = Infinity, lead = 1.2 }) { text = kit.copyText(text);
+    if (kit.hasCJK(text)) { const r=kit.fitLines(metrics,text,font,{maxWidth:maxW,maxHeight:maxH,maxLines,maxSize:max,minSize:min,lineHeight:lead});return {size:r.size,lineHeight:r.lineHeight,lines:r.lines.map(text=>({text,w:widthOf(g,font,r.size,text,0)}))}; }
     const key = [text, font(100), maxW, max, min, maxLines, tracking, balance, maxH, lead].join('|');
     if (fitCache.has(key)) return fitCache.get(key);
-    const words = String(text).trim().split(/\s+/).filter(Boolean);
+    const words = kit.words(String(text).trim(), /\s+/).filter(Boolean);
     const ok = (size) => { const ls = wrapAt(font, size, tracking, words, maxW); return ls.length <= maxLines && ls.length * size * lead <= maxH && ls.every((l) => widthOf(g, font, size, l, tracking) <= maxW + 0.5) ? ls : null; };
     let size = max, lines = ok(max);
     if (!lines) {
@@ -169,7 +170,7 @@
   // a fitted block, drawn from its first baseline
   function block(c, L, font, x, y, { align = 'left', colour = INK, lead = 1.2, tracking = 0 } = {}) {
     setText(c, font, L.size, tracking, align); c.fillStyle = colour;
-    L.lines.forEach((l, i) => c.fillText(l.text, x, y + i * L.size * lead));
+    L.lines.forEach((l, i) => c.fillText(l.text, x, y + i * kit.linePitch(L.lines.map(l=>l.text),L.size,L.size * lead)));
   }
   // words through a slot: the line rises into a mask from below and leaves upward out of it
   function slot(c, draw, x0, top, w, h) { c.save(); c.beginPath(); c.rect(x0, top, w, h); c.clip(); draw(); c.restore(); }
@@ -181,7 +182,7 @@
   const KEEPER = new Path2D('M126 129V180C126 214 102 236 70 236C54 236 40 232 27 224L40 200C49 205 59 208 69 208C84 208 92 198 92 182V129H57V99H92V78C92 39 114 19 149 19C172 19 190 28 203 42L182 65C173 55 163 50 152 50C134 50 126 61 126 80V99H180L169 129Z');
   const MARK = {inkLeft:6.75,inkRight:50.75,inkTop:4.75,dotY:52.5,dotR:6.5,centreY:32};
   // REPLACE: the approved Keeper path, normalized from its 256-unit SVG to 64 units.
-  function drawMark(c,x,y,s,colour) {
+  function drawMark(c,x,y,s,colour) { s = kit.copyText(s);
     // The static mark (the header's); its animated open and close belong to kit.motion.markReveal.
     c.save(); c.translate(x,y); c.scale(s,s); c.translate(-32,-MARK.dotY);
     c.fillStyle=colour; c.scale(.25,.25); c.fill(KEEPER,'evenodd'); c.restore();
@@ -192,7 +193,7 @@
   // the name's size: max, or smaller if the lockup would be wider than 84% of the frame
   // ---------- KEEP: a plant, a screen card ----------
   // a studio cut-out in a square box, its pot standing on a soft contact shadow (pot base 3.5% up)
-  function drawPlant(c, id, cx, cy, s, alpha = 1, shadow = 1) {
+  function drawPlant(c, id, cx, cy, s, alpha = 1, shadow = 1) { s = kit.copyText(s);
     if (alpha <= 0) return;
     const img = A.plants[id];
     c.save(); c.globalAlpha *= alpha;
@@ -251,12 +252,12 @@
   const changeP = (t, i, delay = 0) => (i === 0 ? out3(ramp(t, T.items - 0.16 + delay, T.items + 0.12 + delay)) : land(ramp(t, T_ITEM(i) - LEAD + delay, T_ITEM(i) - LEAD + CHANGE + delay)));
   const plantScale = (t, i) => 1 + 0.03 * m.inOut((t - T_ITEM(i)) / 1); // the camera breathes in on each plant
   // a number in the detail line ticks from the last item's number to this one's: { num, now }
-  function drawGhost(L, text, offY, alpha) {
+  function drawGhost(L, text, offY, alpha) { text = kit.copyText(text);
     if (alpha <= 0.01) return;
     // Very short edits have no surrounding letters to carry the word past the pot.
     const G = L.ghost, max = !wide() && String(text).trim().length <= 3 ? (tall() ? 16 : 6) * U : G.max;
     const B = fit(text, SERIF(480), { maxW: G.maxW, max, min: 2.4 * U, lines: G.lines, tracking: -0.02, maxH: G.maxH, lead: G.lead });
-    const baseline = G.baseline - (B.lines.length - 1) * B.size * G.lead + offY;
+    const baseline = G.baseline - (B.lines.length - 1) * kit.linePitch(text,B.size,B.size * G.lead) + offY;
     g.save(); g.globalAlpha = 0.48 * alpha; // keep the pale tone; the complete word must still read
     block(g, B, SERIF(480), G.x, baseline, { align: G.align, colour: GHOST, lead: G.lead, tracking: -0.02 });
     g.restore();
@@ -277,7 +278,7 @@
     for (const [B, font, y, colour, tr, d] of rows) {
       const q = p(d * F + delay), lines = B.lines.length || 1;
       slot(g, () => { g.save(); g.globalAlpha *= alpha(q); block(g, B, font, X.x, y + roll(q, B.size), { align: X.align, colour, tracking: tr, lead: 1.22 }); g.restore(); },
-        sx, y - B.size * 1.02, sw, B.size * (1.02 + 0.32 + (lines - 1) * 1.22));
+        sx, y - B.size * 1.02, sw, B.size * (1.02 + 0.32) + (lines - 1) * kit.linePitch(B.lines.map(l=>l.text),B.size,B.size * 1.22));
     }
   }
   function drawHeader(L, alpha) {
@@ -451,7 +452,7 @@
   }
   function motionOpen(t) { g.fillStyle=DEEP;g.fillRect(0,0,W,H);motionLockup(t); }
   let layer=null;
-  const helper=(w,h)=>{const c=document.createElement('canvas');c.width=w;c.height=h;return c.getContext('2d',{willReadFrequently:true});};
+  const helper=(w,h)=>{const c=document.createElement('canvas');c.width=w;c.height=h;return kit.textContext(c.getContext('2d',{willReadFrequently:true}));};
   function motionEnd(t) {
     g.fillStyle=CREAM;g.fillRect(0,0,W,H);
     // Same cream on both sides, so no push: the card recedes a little and fades.
@@ -561,7 +562,7 @@
     const X=ringGeom().text,font=SERIF(480),B=fit(V.headline,font,{maxW:X.maxW,max:X.max,min:4*U,lines:3,tracking:-.015});
     const a=m.out((t-P.orbit-.15)/.3);
     g.save();g.globalAlpha*=a;g.translate(0,(1-a)*3*U);
-    const baseline=X.cy*1-(B.lines.length-1)*B.size*1.06/2+capOf(font,B.size)/2;
+    const baseline=X.cy*1-(B.lines.length-1)*kit.linePitch(V.headline,B.size,B.size*1.06)/2+capOf(font,B.size)/2;
     block(g,B,font,W/2,baseline,{align:'center',colour:CREAM,lead:1.06,tracking:-.015});g.restore();motionTiles(t,true);
   }
   // CSS boxes measured in the real 390 px captures. Lossy WebP differences
@@ -699,7 +700,7 @@
     breaks: [[P.items-.25, P.items], [P.pull - .25, P.pull], [P.orbit - .25, P.orbit], [P.close, P.end]],
   };
   const STATES = [[0,'Open'],[P.items,'Items'],[P.pull,'Catalogue'],[P.counts,'Numbers'],[P.orbit,'Orbit'],[P.proof,'Search'],[P.end,'End']];
-  window.template = {
+  window.template = kit.film({
     fps: FPS, duration: DURATION, sizes: SHAPES, width: W, height: H, defaults: () => ({ size: '9:16', ...DEFAULTS }), fields: FIELDS, states: STATES,
     prepare, seek: (t, values) => seek(t, values), cues, music,
     // Keep local captured text sharp during filtering; large pushes retain blur.
@@ -711,9 +712,9 @@
       P.converge-.16,P.converge,P.converge+.2,P.proof,P.proof+.2,
       ...SEARCH_KEYS.flatMap(t=>[t,t+.06,t+.17]),SEARCH_KEYS[2]+.25,P.close-.01,
       P.close+.1,P.close+.2,P.end,P.close+.4,P.close+END_PUSH,P.close+1,DURATION-1/60],
-  };
+  });
   const q = new URLSearchParams(location.search);
   if(window.parent!==window || q.has('render')) document.getElementById('credit').hidden=true;
-  if (window.parent === window && !q.has('render')) prepare().then(() => { const t0 = performance.now(); const loop = () => { seek(((performance.now() - t0) / 1000) % DURATION, { size: q.get('size') || '9:16' }); requestAnimationFrame(loop); }; loop(); });
+  if (window.parent === window && !q.has('render')) window.template.prepare().then(() => { const t0 = performance.now(); const loop = () => { seek(((performance.now() - t0) / 1000) % DURATION, { size: q.get('size') || '9:16' }); requestAnimationFrame(loop); }; loop(); });
 })();
 </script>

@@ -5,6 +5,8 @@ description: Make a readable product or catalogue reel with photographed items o
 
 # Product reel
 
+For Japanese, Korean or Chinese product pages, keep the copy in that language and set the film’s `lang` to the page’s `<html lang>`; bundled Noto faces and phrase breaks handle the text.
+
 Make a short reel of a whole range (allow about 20–25 seconds for six or
 seven items): a logo open; one item per readable slot, each
 with its name, a detail line and its kind huge and pale behind it, a

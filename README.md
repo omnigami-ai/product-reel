@@ -2,7 +2,7 @@
 
 Everything you make, one item a beat.
 
-A short reel of a whole range. Each item gets a beat: its photo, its name, a detail line and its kind huge and pale behind it. The last item pulls back into your real catalogue screen, your numbers count up, every item orbits one line, your real search finds one, and your name and address hold to the end.
+A short reel of a whole range. Each item gets a beat with its photo, name and detail, then the last pulls back into your real catalogue: your numbers count up, your real search finds one, and your name holds to the end.
 
 Watch it play live, and change its words, at [omnigami.ai/skills/product-reel](https://omnigami.ai/skills/product-reel).
 
