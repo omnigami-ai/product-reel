@@ -1,6 +1,9 @@
 ---
 name: product-reel
-description: Make a readable product or catalogue reel with photographed items on the beat, real shop or app screens, count-ups, an orbiting collection and a held brand/address. Use for “show everything we make”, collection showcases and short social reels of a range. Includes tall, square and wide layouts.
+description: >-
+  Product reel of everything you make: photographed items on the beat, real shop or app screens, count-ups, an
+  orbiting collection and your brand and address held at the end, in tall, square and wide. Use for "show everything
+  we make", collection showcases, catalogue reels and short social reels of a range.
 ---
 
 # Product reel
